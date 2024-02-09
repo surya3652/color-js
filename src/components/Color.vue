@@ -76,9 +76,12 @@ table,
 tr,
 th,
 td {
-  border: px solid black;
+  border: 1px solid black;
   margin-left: auto;
   margin-right: auto;
+}
+td{
+  font-weight:800;
 }
 .small-div {
   height: 20px;
