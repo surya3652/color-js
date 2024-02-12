@@ -69,57 +69,9 @@ export default {
       ],
     };
   },
+methods:{
 
-  methods: {
-    compute(input) {
-      this.inputArray = input;
-      var colors = this.allowed_colors;
-      var sorted_arr = [...new Set(this.inputArray)];
-      var arr_len = sorted_arr.length;
-      var col_len = colors.length;
-
-      if (arr_len == col_len) {
-        this.inputArray.forEach((ele) => {
-          if (this.mapping.value != ele) {
-            this.mapping.push({
-              value: ele,
-              color: colors.shift(),
-            });
-          }
-        });
-      } else if (arr_len < col_len) {
-        var x = Math.floor(col_len / arr_len);
-        var counter = 0;
-        /* counter variable is intialized to stop assigning colors to input
-      values when input values comes to an end
-      Ex : col_len = 13 , arr_len = 5
-      so the step size should be 2 i.e. 0,2,4,6,8 indices of color array are
-      taken to assign them to 5 values.
-      The loop usually runs upto i reaches 12, but it should stop when i = 8.
-      so maintained a counter variable to stop iteration thereafter.
-      */
-        for (let i = 0; i < col_len && counter != arr_len; i += x) {
-          if (this.mapping.value != sorted_arr[counter]) {
-            this.mapping.push({
-              value: sorted_arr[counter],
-              color: colors[i],
-            });
-          }
-          counter++;
-        }
-      } else {
-        for (let i = 0; i < arr_len; i++) {
-          if (this.mapping.value != sorted_arr[i]) {
-            this.mapping.push({
-              value: sorted_arr[i],
-              color: colors[i % col_len],
-            });
-          }
-        }
-      }
-      // console.log(JSON.parse(JSON.stringify(this.mapping)));
-    },
-  },
+},
 };
 </script>
 
