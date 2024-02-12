@@ -72,6 +72,7 @@ export default {
 
   methods: {
     compute(input) {
+      this.mapping = [];
       this.inputArray = input;
       var colors = this.allowed_colors;
       var sorted_arr = [...new Set(this.inputArray)];
