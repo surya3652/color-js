@@ -64,6 +64,7 @@ export default {
 
       }
     }
+    console.log("Hi")
     this.colorMap = mapping;
     this.inputArray = this.input.split(",");
   },
