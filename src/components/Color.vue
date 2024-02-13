@@ -12,22 +12,12 @@
       <tr v-for="(element, index) in inputArray" :key="index">
         <td>{{ element }}</td>
         <td>
-          {{
-            mapping.find((e) => {
-              if (e.value === element) {
-                return true;
-              }
-            }).color
-          }}
+          {{ getColor(element) }}
         </td>
         <td>
           <div
             :style="{
-              backgroundColor: mapping.find((e) => {
-                if (e.value === element) {
-                  return true;
-                }
-              }).color,
+              backgroundColor: getColor(element),
             }"
             class="small-div"
           ></div>
@@ -39,17 +29,19 @@
 
 <script>
 import InputForm from "./InputForm.vue";
+import service from "../service";
 export default {
   name: "Color",
   props: {
     msg: String,
   },
+
   components: {
     InputForm,
   },
+
   data() {
     return {
-      mapping: [],
       inputArray: [],
       isVisible: false,
       allowed_colors: [
@@ -69,9 +61,13 @@ export default {
       ],
     };
   },
-methods:{
-
-},
+  methods: {
+    getColor(element) {
+      const mapping = service.compute(this.inputArray,this.allowed_colors);
+      const available = mapping.find((e) => e.value === element);
+      return available ? available.color : "";
+    },
+  },
 };
 </script>
 

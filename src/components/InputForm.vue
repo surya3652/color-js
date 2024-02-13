@@ -22,11 +22,12 @@ export default {
       if (this.input != "") {
         this.$parent.isVisible = true;
       }
-      this.$parent.compute(this.input.split(","));
+      this.$parent.inputArray = this.input.split(",");
     },
     reset() {
       this.input = "";
       this.$parent.isVisible = false;
+      this.$parent.inputArray = [];
     },
   },
 };
